@@ -1,10 +1,10 @@
-<h2>Details of {{ character.name }}</h2>
-<h3> Occupation: {{ character.occupation }} </h3>
-<p> Weapon: {{ character.weapon }} </p>
-<p>Debt:{{character.debt}}</p>
+<h2>Details of {{ axiosResult.name }}</h2>
+<h3> Occupation: {{ axiosResult.occupation }} </h3>
+<p> Weapon: {{ axiosResult.weapon }} </p>
+<p>Debt:{{axiosResult.debt}}</p>
 
-<a href="/characters/{{character.id}}/edit-character">edit</a>
+<a href="/characters/{{axiosResult.id}}/edit-character">edit</a>
 
-<form action="/characters/{{character.id}}/delete" method="POST">
+<form action="/characters/{{axiosResult.id}}/delete" method="POST">
 <button>DELETE</button>
 </form>

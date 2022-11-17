@@ -11,7 +11,6 @@ router.get("/characters", (req, res, next) => {
   axios
     .get("https://ih-crud-api.herokuapp.com/characters")
     .then((responseFromAPI) => {
-      // console.log(responseFromAPI)
       res.render("characters/list-characters", {
         characters: responseFromAPI.data,
       });
@@ -22,21 +21,16 @@ router.get("/characters", (req, res, next) => {
 router.get("/characters/:id", (req, res, next) => {
   axios
     .get(`https://ih-crud-api.herokuapp.com/characters/${req.params.id}`)
-    .then((responseFromAPI) => {
-      // console.log("details: ", responseFromAPI.data)
+    .then((axiosRes) => {
+      let axiosResult = axiosRes.data;
       res.render("characters/details-character", {
-        character: responseFromAPI.data,
+        axiosResult,
       });
     })
     .catch((err) => console.error(err));
 });
 
 router.post("/characters/create", (req, res) => {
-  //   if (req.body.debt === "true") {
-  //     req.body.debt = true;
-  //   } else {
-  //     req.body.debt = false;
-  //   }
   axios
     //   in this instance, req.body is already the object with appropriate key val pairs
     //   so we can just send the entire req.body into axios.post and it will insert it.
