@@ -75,6 +75,20 @@ router.post("/characters/:id/edit-character", (req, res) => {
     });
 });
 
+router.post("/characters/:id/delete", (req, res) => {
+  axios
+    .delete(
+      `https://ih-crud-api.herokuapp.com/characters/${req.params.id}`,
+      req.body
+    )
+    .then(() => {
+      res.redirect("/characters");
+    })
+    .catch((err) => {
+      res.send(err);
+    });
+});
+
 module.exports = router;
 
 // https://ih-crud-api.herokuapp.com/characters
