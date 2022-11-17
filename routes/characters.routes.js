@@ -49,7 +49,31 @@ router.post("/characters/create", (req, res) => {
     });
 });
 
+router.get("/characters/:id/edit-character", (req, res) => {
+  axios
+    .get(`https://ih-crud-api.herokuapp.com/characters/${req.params.id}`)
+    .then((character) => {
+      let thisCharacter = character.data;
+      res.render("characters/edit-character.hbs", { thisCharacter });
+    })
+    .catch((err) => {
+      console.log(err);
+    });
+});
 
+router.post("/characters/:id/edit-character", (req, res) => {
+  axios
+    .put(
+      `https://ih-crud-api.herokuapp.com/characters/${req.params.id}`,
+      req.body
+    )
+    .then(() => {
+      res.redirect(`/characters`);
+    })
+    .catch((err) => {
+      console.log(err);
+    });
+});
 
 module.exports = router;
 
